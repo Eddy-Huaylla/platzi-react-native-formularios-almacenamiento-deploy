@@ -12,8 +12,11 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 
 import { getUser } from "../../../services/user";
+import { useAuth } from "../../../hooks/useAuth";
 
 export const LoginForm = () => {
+	const { login } = useAuth();
+
 	const formik = useFormik({
 		initialValues: initialValues(),
 		validationSchema: Yup.object( validationSchema() ),
@@ -27,7 +30,7 @@ export const LoginForm = () => {
 		try {
 			const { username, password } = formValue;
 			const response = await getUser( username, password );
-			console.log( response )
+			login( response );
 		} catch ( error ) {
 			Alert.alert(
 				"Datos incorrectos",
