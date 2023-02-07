@@ -1,9 +1,10 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome5'
+import { addPokemonFavoriteApi } from '../../../services/favorite';
 
 export const Favorite = ( { pokemonId } ) => {
 	const addFavorite = () => {
-		console.log( 'add to favorite ' + pokemonId )
+		addPokemonFavoriteApi( pokemonId );
 	}
 
 	return (
