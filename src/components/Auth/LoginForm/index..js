@@ -4,11 +4,14 @@ import {
 	View,
 	Text,
 	TextInput,
-	Button
+	Button,
+	Alert
 } from "react-native";
 
 import { useFormik } from "formik";
 import * as Yup from "yup";
+
+import { getUser } from "../../../services/user";
 
 export const LoginForm = () => {
 	const formik = useFormik({
@@ -16,10 +19,30 @@ export const LoginForm = () => {
 		validationSchema: Yup.object( validationSchema() ),
 		validateOnChange: false, // para validar en on change o no
 		onSubmit: ( formValue ) => {
-			console.log("Formulario enviado...");
-			console.log(formValue);
+			loadUser( formValue );
 		}
 	});
+
+	const loadUser = async ( formValue ) => {
+		try {
+			const { username, password } = formValue;
+			const response = await getUser( username, password );
+			console.log( response )
+		} catch ( error ) {
+			Alert.alert(
+				"Datos incorrectos",
+				error.message,
+				[
+					{
+						text: "Aceptar"
+					}
+				],
+				{
+					cancelable: true
+				}
+			);
+		}
+	}
 
 	return (
 		<View>
