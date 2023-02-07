@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { pull } from "lodash";
 
 import { FAVORITE_STORAGE } from "../utils/constants";
 
@@ -29,3 +30,13 @@ export const isPokemonFavoriteApi = async ( id ) => {
 		throw ex;
 	}
 };
+
+export async function removePokemonFavoriteApi(id) {
+	try {
+		const favorites = await getPokemonsFavoriteApi();
+		const newFavorites = pull( favorites, id );
+		await AsyncStorage.setItem( FAVORITE_STORAGE, JSON.stringify( newFavorites ) );
+	} catch (error) {
+		throw error;
+	}
+}
