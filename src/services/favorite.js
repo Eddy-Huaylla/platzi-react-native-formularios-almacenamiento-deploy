@@ -31,7 +31,7 @@ export const isPokemonFavoriteApi = async ( id ) => {
 	}
 };
 
-export async function removePokemonFavoriteApi(id) {
+export async function removePokemonFavoriteApi( id ) {
 	try {
 		const favorites = await getPokemonsFavoriteApi();
 		const newFavorites = pull( favorites, id );
