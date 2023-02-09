@@ -26,7 +26,7 @@ export const NavigationTabs = () => {
 	}
 
 	return (
-		<Tab.Navigator>
+		<Tab.Navigator initialRouteName="Pokedex">
 			<Tab.Screen
 				name="Favorite"
 				component={ FavoriteNavigation }
