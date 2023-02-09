@@ -14,4 +14,7 @@ Enlace del curos: https://platzi.com/cursos/react-native-formularios-almacenamie
 
 ## Cómo generar el APK y AAB para Android
 
-	https://docs.expo.dev/archive/classic-updates/building-standalone-apps/
+	https://docs.expo.dev/build-reference/apk/
+	https://docs.expo.dev/build/setup/
+
+	https://platzi.com/comentario/4414521/
