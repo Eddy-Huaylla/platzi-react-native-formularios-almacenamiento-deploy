@@ -1,6 +1,5 @@
 import React, { useCallback, useState } from "react";
 import { useFocusEffect } from "@react-navigation/native";
-import { Text } from "react-native";
 
 import { getPokemonsFavoriteApi } from "../services/favorite";
 import { getPokemonDetailsApi } from "../services/pokemon";
@@ -8,6 +7,7 @@ import { getPokemonDetailsApi } from "../services/pokemon";
 import { useAuth } from "../hooks/useAuth";
 
 import { PokemonList } from "../components/PokemonList";
+import { NoLogged } from "../components/NoLogged";
 
 export const Favorite = () => {
 	const [ pokemons, setPokemons ] = useState( [] ) ;
@@ -33,7 +33,7 @@ export const Favorite = () => {
 							} );
 						}
 
-						setPokemons([...pokemons, ...pokemonsArray]);
+						setPokemons( pokemonsArray );
 
 					} catch (error) {
 						console.error(error);
@@ -45,7 +45,7 @@ export const Favorite = () => {
 
 
 	return !auth ? (
-		<Text>Usuario No Logeado</Text>
+		<NoLogged />
 	) : (
 		<PokemonList
 			pokemons = { pokemons }
